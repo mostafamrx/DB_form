@@ -8,37 +8,55 @@ WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxme5zlHHabXtHxMVnM5_9-zj
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="تسجيل العملاء المحتملين", page_icon="📝", layout="centered")
 
-# 2. كود CSS المطور للتحكم الكامل في حجم واتجاه الخطوط
+# 2. كود CSS المطور (RTL + خط ضخم + إجبار الثيم الداكن Dark Theme)
 st.markdown("""
 <style>
-    /* تحويل الاتجاه العام لليمين */
+    /* 1. إجبار الخلفية الداكنة وتغيير لون النصوص العامة للأبيض */
+    .stApp {
+        background-color: #0e1117 !important;
+        color: #ffffff !important;
+    }
+    
+    /* 2. تنسيق الحقول والنصوص المدخلة لتتناسب مع الثيم الداكن */
+    .stTextInput>div>div>input, .stTextArea>div>div>textarea {
+        background-color: #1a202c !important;
+        color: #ffffff !important;
+        text-align: right;
+        border: 1px solid #4a5568 !important;
+    }
+    
+    /* 3. تنسيق نص الـ Labels فوق الحقول لتصبح بيضاء وواضحة */
+    .stWidgetFormLabel p {
+        color: #ffffff !important;
+    }
+    
+    /* 4. تحويل الاتجاه العام لليمين */
     * {
         direction: rtl;
         text-align: right;
     }
-    /* ضبط محاذاة النصوص داخل الحقول */
-    .stTextInput>div>div>input {
-        text-align: right;
-    }
-    .stTextArea>div>div>textarea {
-        text-align: right;
-    }
-    /* تحسين شكل زر الحفظ */
+    
+    /* 5. تحسين شكل زر الحفظ وجعله بلون برتقالي مميز يناسب اللوجو الخاص بك */
     .stButton>button {
         float: left;
+        background-color: #f36f21 !important; /* لون برتقالي مشتق من هويتك */
+        color: white !important;
+        border: none !important;
+        font-weight: bold !important;
     }
-    /* محاذاة الأعمدة العلوية في المنتصف تماماً عمودياً */
+    
+    /* 6. محاذاة الأعمدة العلوية في المنتصف تماماً عمودياً */
     [data-testid="stHorizontalBlock"] {
         align-items: center;
     }
     
-    /* تنسيق العنوان الضخم الجديد ليكون ممتداً وواضحاً */
+    /* 7. تنسيق العنوان الضخم */
     .custom-main-title {
-        font-size: 45px !important; /* يمكنك تكبيرها إلى 50px أو 55px إذا أردتها أضخم */
+        font-size: 45px !important;
         font-weight: 800 !important;
         color: white;
         line-height: 1.2;
-        white-space: nowrap; /* يمنع النص من النزول لسطر جديد ليظل ممتداً بعرض المساحة */
+        white-space: nowrap;
     }
 </style>
 """, unsafe_allow_html=True)
